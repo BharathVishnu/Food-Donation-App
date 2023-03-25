@@ -2,7 +2,8 @@ import 'package:fdapp/request.dart';
 import 'package:flutter/material.dart';
 import "package:flutter/gestures.dart";
 import './info.dart';
-import 'donations.dart';
+import "./donations.dart";
+import "./CurrLocation/get_lat_long_address.dart";
 
 class prof extends StatefulWidget {
   prof({super.key});
@@ -101,7 +102,7 @@ class _profState extends State<prof> {
                                 "Location",
                                 style: TextStyle(fontSize: 20),
                               ),
-                              Text('Karikode,kollam')
+                              GetLatLong(),
                             ],
                           )
                         ],
