@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import "./signinnew.dart";
 import "./splashscreen.dart";
+import './profile.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: info(),
     );
   }
 }

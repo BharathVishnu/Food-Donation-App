@@ -1,7 +1,7 @@
 import 'package:fdapp/request.dart';
 import 'package:flutter/material.dart';
 import "package:flutter/gestures.dart";
-import './info.dart';
+import 'profile.dart';
 import "./donations.dart";
 import "./CurrLocation/get_lat_long_address.dart";
 

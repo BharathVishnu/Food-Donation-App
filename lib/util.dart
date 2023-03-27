@@ -5,3 +5,9 @@ verticalSpacing(double h) {
     height: h,
   );
 }
+
+horizontalSpacing(double h) {
+  return SizedBox(
+    width: h,
+  );
+}

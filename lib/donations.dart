@@ -10,12 +10,14 @@ class donate extends StatefulWidget {
 class _donateState extends State<donate> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          image: DecorationImage(
-        image: AssetImage("assets/Donate header.png"),
-        fit: BoxFit.cover,
-      )),
-    );
+    return Scaffold(
+        backgroundColor: Colors.transparent,
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+            image: AssetImage("assets/Donate header.png"),
+            fit: BoxFit.cover,
+          )),
+        ));
   }
 }

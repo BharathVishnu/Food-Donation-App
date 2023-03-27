@@ -2,6 +2,7 @@ import 'package:fdapp/signinnew.dart';
 import 'package:flutter/material.dart';
 import 'package:fdapp/util.dart';
 
+
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
 
