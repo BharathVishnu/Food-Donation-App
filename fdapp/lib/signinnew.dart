@@ -3,6 +3,7 @@ import "./signup.dart";
 import "package:flutter/gestures.dart";
 import "./util.dart";
 import "./prof.dart";
+import 'package:firebase_auth/firebase_auth.dart';
 
 class GradientText extends StatelessWidget {
   final String text;
@@ -28,13 +29,16 @@ class GradientText extends StatelessWidget {
 }
 
 class SignIn extends StatefulWidget {
-  const SignIn({super.key});
+  SignIn({super.key});
+  
 
   @override
   State<SignIn> createState() => _SignInState();
 }
 
 class _SignInState extends State<SignIn> {
+  TextEditingController _passwordController = TextEditingController();
+  TextEditingController _emailController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -67,6 +71,7 @@ class _SignInState extends State<SignIn> {
                   height: 50,
                   width: 278,
                   child: TextFormField(
+                    controller: _emailController,
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Color.fromARGB(100, 97, 97, 97),
@@ -83,6 +88,7 @@ class _SignInState extends State<SignIn> {
                   height: 50,
                   width: 278,
                   child: TextFormField(
+                    controller: _passwordController,
                     obscureText: true,
                     decoration: InputDecoration(
                         filled: true,
@@ -100,8 +106,15 @@ class _SignInState extends State<SignIn> {
                 verticalSpacing(30),
                 GestureDetector(
                   onTap: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => prof()));
+                    FirebaseAuth.instance
+                            .signInWithEmailAndPassword(
+                                email: _emailController.text,
+                                password: _passwordController.text)
+                            .then((value) {
+                          Navigator.pushReplacement(context,
+                              MaterialPageRoute(builder: (context) => prof()));
+                        });
+                    
                   },
                   child: Container(
                       decoration: BoxDecoration(

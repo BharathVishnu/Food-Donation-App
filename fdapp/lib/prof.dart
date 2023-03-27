@@ -170,7 +170,7 @@ class _profState extends State<prof> {
             ],
           ),
           donate(),
-          req()
+          adduser()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
