@@ -2,13 +2,25 @@ import 'package:fdapp/signinnew.dart';
 import 'package:flutter/material.dart';
 import 'package:fdapp/util.dart';
 
-
 class SignUp extends StatelessWidget {
   const SignUp({super.key});
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    TextEditingController _passwordController = TextEditingController();
+    TextEditingController _confirmPasswordController = TextEditingController();
+    final _formKey = GlobalKey<FormState>();
+
+    FormFieldValidator<String> _confirmPasswordValidator = (value) {
+      if (value == null || value.isEmpty) {
+        return 'Confirm Password is required';
+      } else if (value != _passwordController.text) {
+        return 'Passwords do not match';
+      } else {
+        return null;
+      }
+    };
     return Scaffold(
         body: Container(
             decoration: BoxDecoration(
@@ -35,59 +47,84 @@ class SignUp extends StatelessWidget {
                         fontWeight: FontWeight.w600,
                       )),
                   verticalSpacing(40),
-                  Container(
-                    height: 50,
-                    width: 278,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(100, 97, 97, 97),
-                          label: Text("Name"),
-                          icon: Icon(Icons.account_circle_rounded),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          )),
-                    ),
+                  Form(
+                    child: Column(children: [
+                      Container(
+                        height: 50,
+                        width: 278,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(100, 97, 97, 97),
+                              label: Text("Name"),
+                              icon: Icon(Icons.account_circle_rounded),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none,
+                              )),
+                        ),
+                      ),
+                      verticalSpacing(30),
+                      Container(
+                        height: 50,
+                        width: 278,
+                        child: TextFormField(
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(100, 97, 97, 97),
+                              icon: Icon(Icons.email),
+                              label: Text("Email"),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none,
+                              )),
+                        ),
+                      ),
+                      verticalSpacing(30),
+                      Container(
+                        height: 50,
+                        width: 278,
+                        child: TextFormField(
+                          obscureText: true,
+                          controller: _passwordController,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(100, 97, 97, 97),
+                              label: Text("Password"),
+                              icon: Icon(Icons.password),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none,
+                              )),
+                        ),
+                      ),
+                      verticalSpacing(30),
+                      Container(
+                        height: 50,
+                        width: 278,
+                        child: TextFormField(
+                          controller: _confirmPasswordController,
+                          obscureText: true,
+                          decoration: InputDecoration(
+                              filled: true,
+                              fillColor: Color.fromARGB(100, 97, 97, 97),
+                              label: Text("Confirm Password"),
+                              icon: Icon(Icons.password),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide: BorderSide.none,
+                              )),
+                        ),
+                      ),
+                      verticalSpacing(30),
+                    ]),
                   ),
-                  verticalSpacing(30),
-                  Container(
-                    height: 50,
-                    width: 278,
-                    child: TextFormField(
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(100, 97, 97, 97),
-                          icon: Icon(Icons.email),
-                          label: Text("Email"),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          )),
-                    ),
-                  ),
-                  verticalSpacing(30),
-                  Container(
-                    height: 50,
-                    width: 278,
-                    child: TextFormField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                          filled: true,
-                          fillColor: Color.fromARGB(100, 97, 97, 97),
-                          label: Text("Password"),
-                          icon: Icon(Icons.password),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide.none,
-                          )),
-                    ),
-                  ),
-                  verticalSpacing(30),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pushReplacement(context,
-                          MaterialPageRoute(builder: (context) => SignIn()));
+                      if (_formKey.currentState!.validate()) {
+                        Navigator.pushReplacement(context,
+                            MaterialPageRoute(builder: (context) => SignIn()));
+                      }
                     },
                     child: Container(
                         decoration: BoxDecoration(
