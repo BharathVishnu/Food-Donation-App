@@ -2,7 +2,7 @@ import "package:flutter/material.dart";
 import "./signup.dart";
 import "package:flutter/gestures.dart";
 import "./util.dart";
-import "./prof.dart";
+import 'home.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class GradientText extends StatelessWidget {

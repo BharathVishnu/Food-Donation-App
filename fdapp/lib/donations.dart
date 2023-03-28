@@ -19,9 +19,11 @@
 //     );
 //   }
 // }
+import 'home.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import './globals.dart ' as global;
 
 class donate extends StatefulWidget {
   const donate({Key? key}) : super(key: key);
@@ -41,12 +43,6 @@ class _donateState extends State<donate> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text("test")),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.pushNamed(context, '/add');
-        },
-        child: Icon(Icons.add),
-      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       body: StreamBuilder(
         stream: donor.snapshots(),
@@ -155,6 +151,10 @@ class _donateState extends State<donate> {
                               children: [
                                 ElevatedButton(
                                     onPressed: () {
+                                      setState(() {
+                                        
+                                      });
+
                                       donate(donorSnap.id);
                                     },
                                     child: Text('DONATE')),

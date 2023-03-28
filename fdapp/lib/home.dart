@@ -4,6 +4,8 @@ import "package:flutter/gestures.dart";
 import './info.dart';
 import "./donations.dart";
 import "./CurrLocation/get_lat_long_address.dart";
+import './donations.dart';
+import './globals.dart ' as global;
 
 class prof extends StatefulWidget {
   prof({super.key});
@@ -14,9 +16,20 @@ class prof extends StatefulWidget {
 
 class _profState extends State<prof> {
   final PageController _pageController = PageController();
-  int don = 0;
+
   int _selectedIndex = 0;
+
+  int don = 0;
   int don_req = 0;
+
+  void add_don() {
+    don++;
+  }
+
+  void add_don_req() {
+    don_req++;
+  }
+
   void onTapped(int index) {
     setState(() {
       _selectedIndex = index;

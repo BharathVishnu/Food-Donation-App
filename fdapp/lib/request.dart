@@ -10,6 +10,10 @@
 //     );
 //   }
 // }
+import 'dart:js_util';
+
+import 'package:fdapp/donations.dart';
+import 'package:fdapp/home.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -85,8 +89,9 @@ class _adduserState extends State<adduser> {
             ),
             ElevatedButton(
               onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => donate()));
                 adddonar();
-                Navigator.pop(context);
               },
               style: ButtonStyle(
                   maximumSize:
